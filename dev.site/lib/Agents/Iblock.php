@@ -1,6 +1,6 @@
 <?php
 
-// namespace Only\Site\Agents;
+namespace Only\Site\Agents;
 
 
 class Iblock
@@ -8,8 +8,25 @@ class Iblock
     public static function clearOldLogs()
     {
         // Здесь напиши свой агент
-        mail('ya.vol-vol@yandex.ru', 'Агент', 'Агент');
-        return "clearOldLogs();";
+        \Bitrix\Main\Loader::includeModule('iblock');
+
+        $rsLogs = \CIBlockElement::GetList(['TIMESTAMP_X' => 'DESC'], ['IBLOCK_CODE' => 'LOG'], false, false, ['ID', 'IBLOCK_ID']);
+        $arElementsId = Array();
+        while ($elementsId = $rsLogs->Fetch()['ID']) {
+            $arElementsId[] = $elementsId;
+        }
+
+        // вырежем первые 10 элементов и таким образом мы оставим в массиве $arElementsId элементы, которые нужно удалить
+        array_splice($arElementsId, 0, 10); 
+
+        foreach ($arElementsId as $elementId) {
+            \CIBlockElement::Delete($elementId);
+        }
+
+        // $str = implode(', ', $arElementsId);
+        // mail('ya.vol-vol@yandex.ru', 'Агент', "$str");
+
+        return "\Only\Site\Agents\Iblock::clearOldLogs();";
     }
 
     public static function example()
