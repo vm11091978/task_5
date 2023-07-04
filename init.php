@@ -20,7 +20,7 @@ class MyClass
             if (CModule::IncludeModule("dev.site"))
             {
                 // выполняем метод модуля   
-                addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
+                IBlock::addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
             }
         }
         else
@@ -38,7 +38,7 @@ class MyClass
             if (CModule::IncludeModule("dev.site"))
             {
                 // выполняем метод модуля
-                addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
+                IBlock::addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
             }
         }
         else
