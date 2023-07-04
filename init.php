@@ -5,7 +5,7 @@ AddEventHandler("iblock", "OnAfterIBlockElementUpdate", Array("MyClass", "OnAfte
 AddEventHandler("iblock", "OnAfterIBlockElementAdd", Array("MyClass", "OnAfterIBlockElementAddHandler"));
 
 require_once($_SERVER['DOCUMENT_ROOT'] . 'local/modules/dev.site/lib/Handlers/Iblock.php');
-use \Only\Site\Handlers;
+require_once($_SERVER['DOCUMENT_ROOT'] . 'local/modules/dev.site/lib/Agents/Iblock.php');
 
 class MyClass
 {
@@ -20,7 +20,7 @@ class MyClass
             if (CModule::IncludeModule("dev.site"))
             {
                 // выполняем метод модуля   
-                Iblock::addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
+                addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
             }
         }
         else
@@ -38,7 +38,7 @@ class MyClass
             if (CModule::IncludeModule("dev.site"))
             {
                 // выполняем метод модуля
-                Iblock::addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
+                addLog($arFields["ID"], $arFields["IBLOCK_ID"], $arFields["CODE"], $arFields["NAME"]);
             }
         }
         else
